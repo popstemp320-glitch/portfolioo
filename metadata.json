@@ -1,0 +1,6 @@
+{
+  "name": "Aethelgard Fine-Art Curation",
+  "description": "High-end fine-art photography portfolio featuring bespoke editorial curation, distinct scroll signatures, kinetic duotone typography, contextual cursor, and cinematic lightbox.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

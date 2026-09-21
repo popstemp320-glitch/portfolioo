@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --ink: #17140f;
+    --ink-soft: #26221a;
+    --bone: #ece7db;
+    --bone-dim: #d9d2c1;
+    --moss: #5c6046;
+    --moss-bright: #7a8058;
+    --rust: #9c5a3c;
+    --stone: #837c6d;
+
+    --cursor-x: 50vw;
+    --cursor-y: 50vh;
+  }
+
+  body {
+    background-color: var(--ink);
+    color: var(--bone);
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Optical Typography & Ligatures for Fraunces */
+  .font-display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    font-feature-settings: "liga" 1, "dlig" 1, "kern" 1;
+  }
+
+  .font-body {
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .font-mono-exif {
+    font-family: 'JetBrains Mono', monospace;
+    font-feature-settings: "tnum" 1, "zero" 1;
+  }
+
+  .font-signature {
+    font-family: 'Alex Brush', cursive;
+  }
+}
+
+/* 1. Film Texture, Grain & Ambient Atmosphere */
+.ambient-film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Vignette & Ambient Radial Gradient across viewports */
+.ambient-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  background: radial-gradient(circle at center, transparent 55%, rgba(23, 20, 15, 0.45) 100%);
+}
+
+/* Warm Contrast Balancing borders */
+.border-fine {
+  border: 1px solid rgba(236, 231, 219, 0.1);
+}
+
+.border-fine-stone {
+  border: 1px solid rgba(131, 124, 109, 0.25);
+}
+
+/* 2. Image Hover Lift & Desaturation Scrub */
+.curated-frame-image {
+  filter: brightness(0.92) contrast(1.02);
+  transform: scale(1);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter, transform;
+}
+
+.curated-frame-container:hover .curated-frame-image {
+  filter: brightness(1) contrast(1.03);
+  transform: scale(1.015);
+}
+
+/* 3. Kinetic Duotone Text Roll */
+.text-roll-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  height: 1.15em;
+  line-height: 1.15em;
+}
+
+.text-roll-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.group:hover .text-roll-inner,
+.text-roll-wrapper:hover .text-roll-inner {
+  transform: translateY(-50%);
+}
+
+.text-roll-primary {
+  color: var(--bone-dim);
+  transition: color 0.35s ease;
+}
+
+.text-roll-secondary {
+  color: var(--moss-bright);
+}
+
+/* 4. Dynamic Gradient Title Scrub */
+.title-scrub-reactive {
+  background: radial-gradient(
+    circle 280px at var(--cursor-x, 50vw) var(--cursor-y, 50vh),
+    #ece7db 0%,
+    #d9d2c1 45%,
+    #837c6d 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 5. Floating Header Blending */
+.floating-blend-header {
+  mix-blend-mode: difference;
+}
+
+/* 6. Custom Film-Strip Sprockets */
+.film-sprocket {
+  width: 14px;
+  height: 8px;
+  background-color: rgba(236, 231, 219, 0.18);
+  border-radius: 1.5px;
+}
+
+/* 7. Editorial Hero Typography Interactive Hover Lift & Color Transition */
+.hero-nav-item {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              text-shadow 0.4s ease;
+  will-change: transform, color;
+}
+
+.group:hover .hero-nav-item {
+  transform: translateY(-6px) scale(1.015);
+  color: #e04838; /* Editorial deep crimson red */
+  text-shadow: 0 10px 30px rgba(224, 72, 56, 0.35);
+}
+
+.hero-nav-tag {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.35s ease,
+              border-color 0.35s ease;
+}
+
+.group:hover .hero-nav-tag {
+  transform: translateY(-4px);
+  color: #ff6e5e;
+  border-color: rgba(224, 72, 56, 0.6);
+}
+
+.hero-nav-subtext {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.35s ease;
+}
+
+.group:hover .hero-nav-subtext {
+  transform: translateY(-3px);
+  color: #ffb4a8;
+}
+
+/* Hide native scrollbars where custom virtual scrolling is present */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

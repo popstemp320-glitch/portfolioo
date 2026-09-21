@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weddings Editorial Gallery · Documentary Photography</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#f4efe6',
+            brandDarker: '#ede6d9',
+            brandCard: '#faf7f2',
+            brandCrimson: '#e04838',
+            brandCream: '#1c1917',
+            brandMuted: '#787164',
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Space Mono', 'Courier New', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Cormorant Garamond, Inter, Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Lenis for Smooth Momentum Scrolling -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* Lenis Smooth Scroll Recommended CSS */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+    .lenis.lenis-smooth iframe {
+      pointer-events: none;
+    }
+
+    /* Film grain texture */
+    .film-grain {
+      background-image: radial-gradient(rgba(28, 25, 23, 0.04) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #ede6d9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #dfd7c7;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e04838;
+    }
+  </style>
+</head>
+<body class="bg-[#f4efe6] text-[#1c1917] font-sans antialiased selection:bg-[#e04838]/20 selection:text-[#1c1917] min-h-screen overflow-x-hidden film-grain">
+
+  <!-- FIXED HEADER / LOGO BAR -->
+  <header class="fixed top-0 inset-x-0 z-50 px-6 sm:px-12 py-5 flex items-center justify-between pointer-events-none backdrop-blur-md bg-[#f4efe6]/85 border-b border-[#dfd7c7]">
+    <a href="#" class="pointer-events-auto font-mono text-[10px] tracking-[0.3em] uppercase text-[#1c1917] hover:text-[#e04838] transition-colors">
+      SUMEETZ PHOTOGRAPHY
+    </a>
+    <div class="pointer-events-auto flex items-center gap-6 font-mono text-[10px] tracking-[0.25em] uppercase text-[#787164]">
+      <span>MONOGRAPH · VOL. IV</span>
+      <span class="text-[#e04838] hidden sm:inline">● LIVE LENIS / GSAP</span>
+    </div>
+  </header>
+
+  <!-- STICKY LEFT-SIDE NAVIGATION (Requirement 2) -->
+  <aside id="sticky-sidebar" class="fixed left-6 sm:left-10 lg:left-14 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-5 font-mono text-[10px] tracking-[0.25em] uppercase select-none">
+    <!-- Visual Guide Rail -->
+    <div class="absolute left-[7px] top-2 bottom-2 w-px bg-[#dfd7c7] pointer-events-none"></div>
+
+    <a href="#hero" class="nav-item group relative flex items-center gap-3.5 text-[#787164] hover:text-[#1e3a8a] transition-all duration-300 hover:translate-x-1.5" data-section="hero">
+      <span class="nav-dot w-2 h-2 rounded-full border border-[#dfd7c7] bg-[#faf7f2] group-hover:border-[#1e3a8a] group-hover:bg-[#1e3a8a] group-hover:shadow-[0_0_8px_rgba(30,58,138,0.7)] transition-all duration-300"></span>
+      <span class="opacity-50 text-[9px]">00</span>
+      <span class="tracking-[0.2em] font-medium">OVERVIEW</span>
+    </a>
+
+    <a href="#the-day" class="nav-item group relative flex items-center gap-3.5 text-[#787164] hover:text-[#1e3a8a] transition-all duration-300 hover:translate-x-1.5" data-section="the-day">
+      <span class="nav-dot w-2 h-2 rounded-full border border-[#dfd7c7] bg-[#faf7f2] group-hover:border-[#1e3a8a] group-hover:bg-[#1e3a8a] group-hover:shadow-[0_0_8px_rgba(30,58,138,0.7)] transition-all duration-300"></span>
+      <span class="opacity-50 text-[9px]">01</span>
+      <span class="tracking-[0.2em] font-medium">THE DAY</span>
+    </a>
+
+    <a href="#portraits" class="nav-item group relative flex items-center gap-3.5 text-[#787164] hover:text-[#1e3a8a] transition-all duration-300 hover:translate-x-1.5" data-section="portraits">
+      <span class="nav-dot w-2 h-2 rounded-full border border-[#dfd7c7] bg-[#faf7f2] group-hover:border-[#1e3a8a] group-hover:bg-[#1e3a8a] group-hover:shadow-[0_0_8px_rgba(30,58,138,0.7)] transition-all duration-300"></span>
+      <span class="opacity-50 text-[9px]">02</span>
+      <span class="tracking-[0.2em] font-medium">PORTRAITS</span>
+    </a>
+
+    <a href="#the-party" class="nav-item group relative flex items-center gap-3.5 text-[#787164] hover:text-[#1e3a8a] transition-all duration-300 hover:translate-x-1.5" data-section="the-party">
+      <span class="nav-dot w-2 h-2 rounded-full border border-[#dfd7c7] bg-[#faf7f2] group-hover:border-[#1e3a8a] group-hover:bg-[#1e3a8a] group-hover:shadow-[0_0_8px_rgba(30,58,138,0.7)] transition-all duration-300"></span>
+      <span class="opacity-50 text-[9px]">03</span>
+      <span class="tracking-[0.2em] font-medium">THE PARTY</span>
+    </a>
+
+    <a href="#stories" class="nav-item group relative flex items-center gap-3.5 text-[#787164] hover:text-[#1e3a8a] transition-all duration-300 hover:translate-x-1.5" data-section="stories">
+      <span class="nav-dot w-2 h-2 rounded-full border border-[#dfd7c7] bg-[#faf7f2] group-hover:border-[#1e3a8a] group-hover:bg-[#1e3a8a] group-hover:shadow-[0_0_8px_rgba(30,58,138,0.7)] transition-all duration-300"></span>
+      <span class="opacity-50 text-[9px]">04</span>
+      <span class="tracking-[0.2em] font-medium">STORIES</span>
+    </a>
+  </aside>
+
+  <!-- MAIN SCROLLING WRAPPER -->
+  <main class="relative z-10 w-full">
+
+    <!-- 0. HERO VIEWPORT -->
+    <section id="hero" class="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 overflow-hidden">
+      <!-- Ambient Dusk Glow -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#eaddcb]/40 via-[#f4efe6]/80 to-[#f4efe6] pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto space-y-6">
+        <span class="hero-elem font-serif italic text-2xl text-[#787164] block">§</span>
+        <h1 class="hero-elem font-serif font-light text-6xl sm:text-8xl md:text-9xl tracking-tight uppercase leading-none text-[#1c1917] drop-shadow-[0_15px_35px_rgba(28,25,23,0.08)]">
+          WEDDINGS
+        </h1>
+        <p class="hero-elem font-mono text-[11px] sm:text-xs tracking-[0.45em] text-[#787164] uppercase font-medium">
+          DOCUMENTARY & EDITORIAL PHOTOGRAPHY
+        </p>
+
+        <div class="hero-elem pt-8">
+          <a href="#the-day" class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase text-[#1c1917] hover:text-[#e04838] transition-colors py-2 px-4 rounded-full border border-[#dfd7c7] hover:border-[#e04838] bg-[#faf7f2]/80 font-medium">
+            <span>EXPLORE CURATED WORK</span>
+            <span>↓</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT WRAPPER WITH MARGIN FOR STICKY SIDEBAR -->
+    <div class="max-w-[1480px] mx-auto px-6 sm:px-10 md:pl-48 lg:pl-56 pr-6 sm:pr-12 pb-36 space-y-40">
+
+      <!-- ====================================================================
+           SECTION 1: "THE DAY"
+           3-Column Vertical Grid with GSAP Parallax & Editorial Text Breakouts
+           ==================================================================== -->
+      <section id="the-day" class="space-y-24 scroll-mt-28">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-xl mx-auto space-y-2">
+          <span class="font-serif italic text-lg text-[#787164] block">§</span>
+          <span class="font-mono text-[10px] tracking-[0.35em] text-[#787164] uppercase block font-medium">
+            01 / THE DAY
+          </span>
+        </div>
+
+        <!-- 3-COLUMN VERTICAL GRID (Requirement 1) -->
+        <div class="photo-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 items-start">
+          
+          <!-- COLUMN 1 (Parallax Factor: Normal/Slow) -->
+          <div class="grid-col col-1 flex flex-col gap-10" data-speed="0.95">
+            <!-- Card 1 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[3/4]">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Laughter during vows">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 01
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Unscripted Laughter</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Kodak Portra 400 · 35mm f/1.4</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">3:4</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[4/5]">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Dinner candlelight toast">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 04
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">The Candlelight Toast</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Fujifilm 400H · 50mm f/1.2</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">4:5</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[1/1]">
+                <img src="https://images.unsplash.com/photo-1549417229-aa67d3263c09?q=80&w=800&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Wax seals and calligraphy">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 07
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Heirloom Wax Seals</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Macro Still · 90mm f/2.8</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">1:1</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMN 2 (Parallax Factor: Floating Offset / Faster Drift) -->
+          <div class="grid-col col-2 flex flex-col gap-10 md:pt-16" data-speed="1.08">
+            <!-- Card 4 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[16/10]">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Hallway embrace">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 02
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Hallway Embrace</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Ilford HP5 Plus · 28mm f/2</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">16:10</span>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[3/4]">
+                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Meadow walk in twilight">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 05
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Meadow Twilight Walk</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Kodak Tri-X · 50mm f/1.4</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">3:4</span>
+              </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[4/5]">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Rings in antique brass box">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 08
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">The Brass Ring Vessel</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Medium Format · 80mm f/2.8</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">4:5</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMN 3 (Parallax Factor: Normal/Smooth) -->
+          <div class="grid-col col-3 flex flex-col gap-10" data-speed="1.0">
+            <!-- Card 7 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[1/1]">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Velvet pouch and heirloom brooch">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 03
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Velvet & Family Gold</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Macro Archival · 105mm f/2.8</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">1:1</span>
+              </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[3/4]">
+                <img src="https://images.unsplash.com/photo-1509927083803-4bd519298ac4?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Glistening emotion during speeches">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 06
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Silent Emotion</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Kodak Portra 800 · 85mm f/1.4</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">3:4</span>
+              </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[16/10]">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Motion blur gown walk">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 09
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Gown in Velocity</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Cinematic Slow Shutter · 35mm</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">16:10</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- EDITORIAL TEXT BREAKOUT 1 (Requirement 3 & 4) -->
+        <div class="editorial-breakout my-32 max-w-3xl mx-auto text-center px-4 select-none">
+          <p class="font-serif italic text-2xl sm:text-3xl md:text-4xl font-light text-[#1c1917] leading-relaxed tracking-tight">
+            “Most of your day will happen without direction, so we photograph it that way. Close when it counts. Out of sight when the moment is yours. The portraits are the only part that’s staged, and even those keep moving so they feel like something you lived rather than something you posed for.”
+          </p>
+          <div class="mt-8">
+            <span class="inline-block w-8 h-px bg-[#e04838]"></span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ====================================================================
+           SECTION 2: "PORTRAITS"
+           3-Column Vertical Grid with Parallax
+           ==================================================================== -->
+      <section id="portraits" class="space-y-24 scroll-mt-28 pt-20 border-t border-[#dfd7c7]">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-xl mx-auto space-y-2">
+          <span class="font-serif italic text-lg text-[#787164] block">§</span>
+          <span class="font-mono text-[10px] tracking-[0.35em] text-[#787164] uppercase block font-medium">
+            02 / PORTRAITS
+          </span>
+        </div>
+
+        <!-- 3-COLUMN VERTICAL GRID -->
+        <div class="photo-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 items-start">
+          
+          <!-- Column 1 -->
+          <div class="grid-col flex flex-col gap-10" data-speed="0.95">
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[4/5]">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Embrace in pine woods">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 10
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">The Pine Forest</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Kodak Gold 200 · 50mm f/1.4</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">4:5</span>
+              </div>
+            </div>
+
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[1/1]">
+                <img src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=800&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Vintage rotary telephone">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 13
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Audio Guestbook</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">35mm Analog · f/2.0</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">1:1</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="grid-col flex flex-col gap-10 md:pt-14" data-speed="1.08">
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[3/4]">
+                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Circular veil on meadow grass">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 11
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Veil on Meadow Grass</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Overhead 6x7 · 90mm f/4</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">3:4</span>
+              </div>
+            </div>
+
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[16/10]">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Estate library dining">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 14
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Estate Library Intimacy</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Ambient Tungsten · 24mm f/1.4</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">16:10</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="grid-col flex flex-col gap-10" data-speed="1.0">
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[16/10]">
+                <img src="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Stone balcony overlook">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 12
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Stone Balcony Monument</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Wide Angle · 24mm f/2.8</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">16:10</span>
+              </div>
+            </div>
+
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[3/4]">
+                <img src="https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Chandelier reflection">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 15
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">The Crystal Ballroom</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Direct Flash Archival · 35mm</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">3:4</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- EDITORIAL TEXT BREAKOUT 2 -->
+        <div class="editorial-breakout my-32 max-w-3xl mx-auto text-center px-4 select-none">
+          <p class="font-serif italic text-2xl sm:text-3xl md:text-4xl font-light text-[#1c1917] leading-relaxed tracking-tight">
+            “Your wedding isn’t spent posing. We direct in motion, never stiff, so most couples loosen within the first fifteen minutes. Those who’d rather stay close to their guests need only twenty minutes during cocktail hour.”
+          </p>
+          <div class="mt-8">
+            <span class="inline-block w-8 h-px bg-[#e04838]"></span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ====================================================================
+           SECTION 3: "THE PARTY"
+           3-Column Vertical Grid with High-Contrast Direct Flash & Energy
+           ==================================================================== -->
+      <section id="the-party" class="space-y-24 scroll-mt-28 pt-20 border-t border-[#dfd7c7]">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-xl mx-auto space-y-2">
+          <span class="font-serif italic text-lg text-[#787164] block">§</span>
+          <span class="font-mono text-[10px] tracking-[0.35em] text-[#787164] uppercase block font-medium">
+            03 / THE PARTY
+          </span>
+        </div>
+
+        <!-- 3-COLUMN VERTICAL GRID -->
+        <div class="photo-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 items-start">
+          
+          <!-- Column 1 -->
+          <div class="grid-col flex flex-col gap-10" data-speed="0.95">
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[3/4]">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Direct flash party heel">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 16
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Fence Heel After Midnight</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Direct Flash 28mm · f/8</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">3:4</span>
+              </div>
+            </div>
+
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[16/10]">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Late night dance floor blur">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 19
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Dance Floor In Motion</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Slow Shutter Drag · 24mm</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">16:10</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="grid-col flex flex-col gap-10 md:pt-16" data-speed="1.08">
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[1/1]">
+                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=800&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Champagne tower spill">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 17
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">The Champagne Tower</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">High Speed Flash · 50mm</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">1:1</span>
+              </div>
+            </div>
+
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[4/5]">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Vintage car confetti escape">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 20
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">The Convertible Escape</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Grain Push · 35mm f/2</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">4:5</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="grid-col flex flex-col gap-10" data-speed="1.0">
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[4/5]">
+                <img src="https://images.unsplash.com/photo-1509927083803-4bd519298ac4?q=80&w=900&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Confetti walk">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 18
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Ecstatic Confetti Walk</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Continuous Motor · 35mm</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">4:5</span>
+              </div>
+            </div>
+
+            <div class="photo-card group relative bg-[#faf7f2] border border-[#dfd7c7] hover:border-[#e04838] rounded-sm overflow-hidden transition-all duration-700 shadow-sm hover:shadow-[0_15px_30px_rgba(224,72,56,0.15)]">
+              <div class="relative overflow-hidden aspect-[1/1]">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop" 
+                     class="card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100" 
+                     alt="Sparkler tunnel exit">
+                <div class="absolute inset-0 bg-[#1c1917]/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#faf7f2]/90 backdrop-blur-sm border border-[#dfd7c7] text-[9px] font-mono tracking-widest text-[#1c1917]">
+                  PLATE 21
+                </div>
+              </div>
+              <div class="p-4 flex items-center justify-between border-t border-[#dfd7c7]">
+                <div>
+                  <h4 class="font-mono text-[11px] text-[#1c1917] uppercase tracking-wider">Final Sparkler Exit</h4>
+                  <p class="font-mono text-[9px] text-[#787164]">Ambient Flare · 24mm f/1.4</p>
+                </div>
+                <span class="font-mono text-[9px] text-[#787164]">1:1</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- EDITORIAL TEXT BREAKOUT 3 -->
+        <div class="editorial-breakout my-32 max-w-3xl mx-auto text-center px-4 select-none">
+          <p class="font-serif italic text-2xl sm:text-3xl md:text-4xl font-light text-[#1c1917] leading-relaxed tracking-tight">
+            “Later, once the vows are kept and the formalities have burned away, the night loosens into something no timeline can hold. It is the least composed hour and the most worth keeping, the room at full volume, everyone finally and entirely themselves.”
+          </p>
+          <div class="mt-8">
+            <span class="inline-block w-8 h-px bg-[#e04838]"></span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ====================================================================
+           SECTION 4: "STORIES"
+           Typography List with Hover Feedback
+           ==================================================================== -->
+      <section id="stories" class="scroll-mt-28 pt-20 border-t border-[#dfd7c7]">
+        <div class="mb-10 text-left">
+          <span class="font-mono text-[10px] tracking-[0.35em] text-[#787164] uppercase font-medium">
+            04 / THE STORIES
+          </span>
+        </div>
+
+        <div class="divide-y divide-[#dfd7c7] border-y border-[#dfd7c7]">
+          <div class="story-item group py-8 sm:py-10 flex flex-col sm:flex-row sm:items-baseline justify-between transition-colors duration-300 hover:text-[#e04838] cursor-pointer">
+            <h3 class="font-serif italic text-3xl sm:text-5xl font-light tracking-tight text-[#1c1917] group-hover:text-[#e04838] group-hover:translate-x-2 transition-all duration-300">
+              REANNA & HAWKEYE
+            </h3>
+            <span class="font-mono text-[10px] tracking-[0.25em] text-[#787164] group-hover:text-[#1c1917] uppercase mt-2 sm:mt-0">
+              MALIBU CANYON ESTATE · 48 FRAMES
+            </span>
+          </div>
+
+          <div class="story-item group py-8 sm:py-10 flex flex-col sm:flex-row sm:items-baseline justify-between transition-colors duration-300 hover:text-[#e04838] cursor-pointer">
+            <h3 class="font-serif italic text-3xl sm:text-5xl font-light tracking-tight text-[#1c1917] group-hover:text-[#e04838] group-hover:translate-x-2 transition-all duration-300">
+              SHAWNI & BEN
+            </h3>
+            <span class="font-mono text-[10px] tracking-[0.25em] text-[#787164] group-hover:text-[#1c1917] uppercase mt-2 sm:mt-0">
+              HUDSON VALLEY BARN · 64 FRAMES
+            </span>
+          </div>
+
+          <div class="story-item group py-8 sm:py-10 flex flex-col sm:flex-row sm:items-baseline justify-between transition-colors duration-300 hover:text-[#e04838] cursor-pointer">
+            <h3 class="font-serif italic text-3xl sm:text-5xl font-light tracking-tight text-[#1c1917] group-hover:text-[#e04838] group-hover:translate-x-2 transition-all duration-300">
+              ABIGAIL & MAX
+            </h3>
+            <span class="font-mono text-[10px] tracking-[0.25em] text-[#787164] group-hover:text-[#1c1917] uppercase mt-2 sm:mt-0">
+              COMO VILLA LAKEFRONT · 72 FRAMES
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="pt-24 border-t border-[#dfd7c7] flex flex-col sm:flex-row items-center justify-between text-[#787164] font-mono text-[10px] tracking-[0.25em] gap-6">
+        <span>© 2026 SUMEETZ PHOTOGRAPHY · ALL RIGHTS RESERVED</span>
+        <a href="#hero" class="hover:text-[#e04838] transition-colors uppercase">
+          RETURN TO TOP ↑
+        </a>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       JAVASCRIPT: LENIS SMOOTH MOMENTUM SCROLLING + GSAP SCROLLTRIGGER
+       ==================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize Lenis Smooth Scroll
+      const lenis = new Lenis({
+        duration: 1.25,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth natural decay
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.95,
+        touchMultiplier: 1.5,
+        infinite: false,
+      });
+
+      // Synchronize Lenis with GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 2. Smooth Scroll for Anchor Links using Lenis
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = anchor.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              lenis.scrollTo(targetElement, {
+                offset: -40,
+                duration: 1.3,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+              });
+            }
+          }
+        });
+      });
+
+      // 3. Hero Entrance Animation
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      heroTl.from('.hero-elem', {
+        y: 45,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 1.1,
+        delay: 0.1,
+      });
+
+      // 4. GSAP ScrollTrigger: Photo Cards Fade-In, Parallax & Glide
+      const photoCards = document.querySelectorAll('.photo-card');
+      photoCards.forEach((card) => {
+        // Opacity and slight translation entrance
+        gsap.fromTo(card, 
+          { 
+            opacity: 0, 
+            y: 50, 
+            scale: 0.96 
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              end: 'top 40%',
+              toggleActions: 'play none none reverse',
+            }
+          }
+        );
+
+        // Subtle internal image parallax glide inside card container
+        const img = card.querySelector('.card-img');
+        if (img) {
+          gsap.fromTo(img, 
+            { yPercent: -5 },
+            {
+              yPercent: 5,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true,
+              }
+            }
+          );
+        }
+      });
+
+      // 5. Differential Column Parallax & Dual-Phase Scroll Motion
+      const columns = document.querySelectorAll('.grid-col');
+      columns.forEach((col) => {
+        const speed = parseFloat(col.getAttribute('data-speed')) || 1.0;
+        if (speed !== 1.0) {
+          const distance = (speed - 1.0) * 140;
+          gsap.to(col, {
+            y: distance,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: col.closest('.photo-grid'),
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            }
+          });
+        }
+      });
+
+      // FIRST HALF MOTION: Sideways movement when scrolled down
+      const sidewaysLeftCols = document.querySelectorAll('.col-sideways-left');
+      sidewaysLeftCols.forEach((col) => {
+        gsap.fromTo(col,
+          { x: 35 },
+          {
+            x: -55,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: col.closest('.photo-grid') || col,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            }
+          }
+        );
+      });
+
+      const sidewaysRightCols = document.querySelectorAll('.col-sideways-right');
+      sidewaysRightCols.forEach((col) => {
+        gsap.fromTo(col,
+          { x: -35 },
+          {
+            x: 55,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: col.closest('.photo-grid') || col,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            }
+          }
+        );
+      });
+
+      // SECOND HALF MOTION: Moves in a different way (Vertical dynamic parallax, tilt & scale)
+      const secondHalfUpCols = document.querySelectorAll('.col-second-half-up');
+      secondHalfUpCols.forEach((col) => {
+        gsap.fromTo(col,
+          { y: 60, scale: 0.98, rotate: 1 },
+          {
+            y: -85,
+            scale: 1.02,
+            rotate: -1.2,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: col.closest('.photo-grid') || col,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            }
+          }
+        );
+      });
+
+      const secondHalfDownCols = document.querySelectorAll('.col-second-half-down');
+      secondHalfDownCols.forEach((col) => {
+        gsap.fromTo(col,
+          { y: -50, scale: 1.02, rotate: -1 },
+          {
+            y: 90,
+            scale: 0.98,
+            rotate: 1.2,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: col.closest('.photo-grid') || col,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            }
+          }
+        );
+      });
+
+      // 6. Editorial Text Breakouts Animation
+      const textBreakouts = document.querySelectorAll('.editorial-breakout');
+      textBreakouts.forEach((block) => {
+        gsap.fromTo(block,
+          {
+            opacity: 0,
+            y: 40,
+            filter: 'blur(4px)',
+          },
+          {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: block,
+              start: 'top 82%',
+              toggleActions: 'play none none reverse',
+            }
+          }
+        );
+      });
+
+      // 7. Active Sticky Sidebar Tracker
+      const sections = document.querySelectorAll('section[id]');
+      const navItems = document.querySelectorAll('.nav-item');
+
+      window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        const scrollPosition = window.scrollY + window.innerHeight * 0.4;
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+
+        navItems.forEach((navItem) => {
+          const targetSection = navItem.getAttribute('data-section');
+          const dot = navItem.querySelector('.nav-dot');
+          const label = navItem.querySelector('span:last-child');
+
+          if (targetSection === currentSectionId) {
+            navItem.classList.add('text-[#1c1917]');
+            navItem.classList.remove('text-[#787164]');
+            if (dot) {
+              dot.classList.add('bg-[#e04838]', 'border-[#e04838]', 'scale-125');
+              dot.classList.remove('bg-[#faf7f2]', 'border-[#dfd7c7]');
+            }
+            if (label) {
+              label.classList.add('text-[#e04838]');
+            }
+          } else {
+            navItem.classList.remove('text-[#1c1917]');
+            navItem.classList.add('text-[#787164]');
+            if (dot) {
+              dot.classList.remove('bg-[#e04838]', 'border-[#e04838]', 'scale-125');
+              dot.classList.add('bg-[#faf7f2]', 'border-[#dfd7c7]');
+            }
+            if (label) {
+              label.classList.remove('text-[#e04838]');
+            }
+          }
+        });
+      }, { passive: true });
+    });
+  </script>
+</body>
+</html>
